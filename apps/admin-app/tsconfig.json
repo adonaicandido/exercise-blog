@@ -1,0 +1,12 @@
+{
+  "extends": "@unknown-co/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "plugins": [{ "name": "next" }],
+
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "next-env.d.ts", ".next/types/**/*.ts", "postcss.config.js"]
+}

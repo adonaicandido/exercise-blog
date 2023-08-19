@@ -1,0 +1,68 @@
+networks:
+  unknown-co:
+
+services:
+  admin-app:
+    build:
+      context: .
+      dockerfile: ./apps/admin-app/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:4000
+    container_name: admin-app
+    environment:
+      API_URL: http://blog-api:4000
+    depends_on:
+      - blog-api
+    networks:
+      - unknown-co
+    ports:
+      - 3001:3000
+    restart: always
+
+  blog-api:
+    build:
+      context: .
+      dockerfile: ./apps/blog-api/Dockerfile
+    container_name: blog-api
+    depends_on:
+      - database
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_NAME: blog
+      DATABASE_USER: admin
+      DATABASE_PASS: very-insecure-saving-this-in-git
+      JWT_SECRET: very-insecure-saving-this-in-git
+    networks:
+      - unknown-co
+    ports:
+      - 4000:4000
+    restart: always
+
+  database:
+    image: postgres:15-alpine
+    container_name: database
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: very-insecure-saving-this-in-git
+    networks:
+      - unknown-co
+    ports:
+      - 5432:5432
+    restart: always
+
+  site-app:
+    build:
+      context: .
+      dockerfile: ./apps/site-app/Dockerfile
+    container_name: site-app
+    depends_on:
+      - blog-api
+    environment:
+      API_URL: http://blog-api:4000
+    networks:
+      - unknown-co
+    ports:
+      - 3000:3000
+    restart: always

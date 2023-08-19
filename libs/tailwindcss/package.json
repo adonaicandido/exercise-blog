@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "name": "@unknown-co/tailwindcss",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    "./animation": "./src/animation.ts",
+    "./colors": "./src/colors.ts",
+    "./data": "./src/data.ts",
+    "./sizing": "./src/sizing.ts",
+    "./spacing": "./src/spacing.ts",
+    "./typography": "./src/typography.ts"
+  },
+  "dependencies": {
+    "tailwindcss-animate": "^1.0.6"
+  },
+  "devDependencies": {
+    "@unknown-co/prettier": "workspace:*",
+    "autoprefixer": "10.4.15",
+    "postcss": "8.4.28",
+    "tailwindcss": "3.3.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "@unknown-co/eslint/nextjs"
+  },
+  "prettier": "@unknown-co/prettier/react"
+}
