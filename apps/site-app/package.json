@@ -13,7 +13,7 @@
     "@hookform/resolvers": "^3.3.0",
     "@phosphor-icons/react": "^2.0.10",
     "@unknown-co/react-ui": "workspace:*",
-    "next": "^13.4.19",
+    "next": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
